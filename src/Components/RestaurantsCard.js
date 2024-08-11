@@ -5,7 +5,7 @@ const ResturantCard = (props) =>{
     
     return (
         <div className="rest-card">
-            <img className="rest-img" src={CDN_URL+cloudinaryImageId} alt="resturant-img"></img>
+            <img className="rest-img" src={CDN_URL+cloudinaryImageId} alt="restaurant-img"></img>
             <h2>{name}</h2>
             <h4>{cuisines.join(" ")}</h4>
             <h4>{avgRating}</h4>

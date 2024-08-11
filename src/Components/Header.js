@@ -6,7 +6,7 @@ const Header = () => {
 
     return  (
     <div className="header">
-      {console.log("header render")}
+      {/* {console.log("header render")} */}
 
       <div className="logo-container">
       <img className="logo"
