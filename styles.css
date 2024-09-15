@@ -1,4 +1,7 @@
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* 
 .header{
     display: flex;
     justify-content: space-between;
@@ -68,4 +71,4 @@
 }
 .res-container > a{
     text-decoration: none;
-}
+} */
