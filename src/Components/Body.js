@@ -1,14 +1,19 @@
-import ResturantCard from "./RestaurantsCard";
-import { useState, useEffect } from "react";
+import RestaurantCard, { RestaurantPromotedLabel } from "./RestaurantCard";
+import { useState, useEffect, useContext } from "react";
 import ShimmerCard from "./ShimmerCard";
 import { FOOD_API } from "../utils/constants";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [filterRestaurantList, setFilterRestaurantList] = useState([]);
-
+  
   const [searchText, setSearchText] = useState("");
+
+  const RestaurantCardPromoted = RestaurantPromotedLabel(RestaurantCard);
+  const promoted = false;
+
   // console.log("Body Render")
 
   useEffect(() => {
@@ -32,7 +37,7 @@ const Body = () => {
 
   return (
     <div className="body">
-      <div className="flex m-8 items-center">
+      <div className="flex my-8 justify-center">
         <div className="search">
           <input
             type="text"
@@ -61,7 +66,7 @@ const Body = () => {
             className="p-2 m-2 ml-5 bg-green-400 rounded-lg hover:bg-green-500"
             onClick={() => {
               const filterList = restaurantList.filter(
-                (res) => res.info.avgRating >= 4.5
+                (res) => res.info.avgRating >= 4.2
               );
               setFilterRestaurantList(filterList);
             }}
@@ -69,11 +74,15 @@ const Body = () => {
             Top Restaurants
           </button>
         </div>
+
       </div>
       <div className="flex flex-wrap justify-center">
         {filterRestaurantList.map((res) => (
           <Link key={res.info.id} to={"/restaurants/" + res.info.id}>
-            <ResturantCard resData={res} />
+            {
+            promoted?(<RestaurantCardPromoted resDate={res} />): (<RestaurantCard resData={res} />)
+            
+          }
           </Link>
           //     <ResturantCard key={res.info.id} resData={res}/>
         ))}

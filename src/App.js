@@ -6,14 +6,26 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import About from "./Components/About";
 import Contact from "./Components/Contact";
 import Error from "./Components/Error";
-import RestuarantsMenu from "./Components/RestaurantsMenu";
-import { lazy, Suspense } from "react";
+import RestuarantsMenu from "./Components/RestaurantMenu";
+import { lazy, Suspense, useState, useEffect } from "react";
+import UserContext from "./utils/UserContext";
 
 const AppLayout = () => {
+  const [userName, setUserName] = useState();
+
+  useEffect(() => {
+    const userInfo = {
+      name: "Salona Dubey",
+    };
+    setUserName(userInfo.name);
+  }, []);
+
   return (
     <div className="app">
-      <Header />
-      <Outlet />
+      <UserContext.Provider value={{ loggedinUser: userName , setUserName}}>
+        <Header />
+        <Outlet />
+      </UserContext.Provider>
     </div>
   );
 };
